@@ -3,8 +3,6 @@ package com.lab.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-
-
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.GeneratedValue;
@@ -72,7 +70,5 @@ public class Affiliates {
 	public void setAppointments(Set<Appointments> appointments) {
 		this.appointments = appointments;
 	}
-
-
 
 }
