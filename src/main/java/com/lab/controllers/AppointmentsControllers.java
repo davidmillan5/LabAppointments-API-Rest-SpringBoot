@@ -1,8 +1,10 @@
 package com.lab.controllers;
 
 import java.net.URI;
+
 import java.util.List;
 import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,7 @@ import com.lab.entity.Tests;
 import com.lab.repository.AffiliatesRepository;
 import com.lab.repository.AppointmentsRepository;
 import com.lab.repository.TestsRepository;
+
 
 import jakarta.validation.Valid;
 
@@ -89,8 +92,7 @@ public class AppointmentsControllers {
 		appointments.setAffiliates(affiliatesOptional.get());
 		appointments.setTests(testsOptional.get());
 		
-		appointments.setId(affiliatesOptional.get().getId());
-		appointments.setId(testsOptional.get().getId());
+		appointments.setId(appointmentsOptional.get().getId());
 		
 		appointmentsRepository.save(appointments);
 		
@@ -98,9 +100,18 @@ public class AppointmentsControllers {
 		
 	}
 	
+	
+	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable Integer id) {
-		appointmentsRepository.deleteById(id);
+	public ResponseEntity<Appointments> deleteAppointment(@PathVariable Integer id){
+		Optional<Appointments> appointmentsOptional = appointmentsRepository.findById(id);
+		
+		if(!appointmentsOptional.isPresent()) {
+			return ResponseEntity.unprocessableEntity().build();
+		}
+		
+		appointmentsRepository.delete(appointmentsOptional.get());
+		return ResponseEntity.noContent().build();
 	}
 	
 	@GetMapping("/getbyid/{id}")
@@ -113,7 +124,6 @@ public class AppointmentsControllers {
 		return affiliatesRepository.findById(id);
 	}
 	
-	@GetMapping("/getbydate/{date}")
 	
 	
 }

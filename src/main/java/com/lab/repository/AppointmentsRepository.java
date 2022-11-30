@@ -6,4 +6,5 @@ import com.lab.entity.Appointments;
 
 public interface AppointmentsRepository extends JpaRepository<Appointments,Integer> {
 
+	
 }

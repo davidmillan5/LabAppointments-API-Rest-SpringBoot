@@ -27,13 +27,12 @@ public class Appointments {
 	private int id;
 
 	@NotNull
-	@DateTimeFormat(pattern = "DD-MM-YYYY")
-	@JsonFormat(pattern = "DD-MM-YYYY")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date date;
 
 	@NotNull
 	@DateTimeFormat(pattern = "hh:mm")
-	@JsonFormat(pattern = "hh:mm", timezone = "GMT-5")
+	@JsonFormat(pattern = "hh:mm")
 	private Date hour;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
